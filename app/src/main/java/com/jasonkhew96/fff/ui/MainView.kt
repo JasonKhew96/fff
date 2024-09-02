@@ -14,7 +14,10 @@ class MainView(context: Context, attrs: AttributeSet? = null) : CustomViewGroup(
 
     val editText = EditText(context).apply {
         setSingleLine()
-        layoutParams = MarginLayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
+        layoutParams = MarginLayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT).apply {
+            marginStart = 16.dp
+            marginEnd = 16.dp
+        }
         this@MainView.addView(this)
     }
 
@@ -27,7 +30,10 @@ class MainView(context: Context, attrs: AttributeSet? = null) : CustomViewGroup(
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
 
         buttonScope.autoMeasure()
-        editText.autoMeasure()
+        editText.measure(
+            editText.defaultWidthMeasureSpec(this) - editText.marginStart - editText.marginEnd,
+            editText.defaultHeightMeasureSpec(this)
+        )
         buttonSave.autoMeasure()
 
         setMeasuredDimension(measuredWidth, measuredHeight)
@@ -38,7 +44,7 @@ class MainView(context: Context, attrs: AttributeSet? = null) : CustomViewGroup(
             (measuredHeight / 2) - ((buttonScope.measuredHeightWithMargins + editText.measuredHeightWithMargins + buttonSave.measuredHeightWithMargins) / 2)
 
         buttonScope.autoLayout((measuredWidth / 2) - (buttonScope.measuredWidth / 2), optimizeY)
-        editText.autoLayout((measuredWidth / 2) - (editText.measuredWidth / 2), buttonScope.bottom)
+        editText.autoLayout(editText.marginStart, buttonScope.bottom)
         buttonSave.autoLayout((measuredWidth / 2) - (buttonSave.measuredWidth / 2), editText.bottom)
     }
 }
