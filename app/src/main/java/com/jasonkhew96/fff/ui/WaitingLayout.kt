@@ -1,15 +1,20 @@
 package com.jasonkhew96.fff.ui
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Color
 import android.util.AttributeSet
 import android.widget.TextView
 import com.jasonkhew96.fff.R
 
+@SuppressLint("ClickableViewAccessibility")
 class WaitingLayout(context: Context, attrs: AttributeSet? = null) :
     CustomViewGroup(context, attrs) {
     init {
         setBackgroundColor(Color.argb(128, 0, 0, 0))
+        setOnTouchListener { _, _ ->
+            true
+        }
     }
 
     private val waitText = TextView(context).apply {
