@@ -77,6 +77,7 @@ class CustomAdapter(private val mListener: OnRequestListener) : BaseAdapter() {
                     })
             } else {
                 app.xposedService?.removeScope(app.appList[position].packageName)
+                app.scopeList.remove(app.appList[position].packageName)
             }
         }
         return view
