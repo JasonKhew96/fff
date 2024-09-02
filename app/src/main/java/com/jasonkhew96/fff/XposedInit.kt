@@ -6,6 +6,7 @@ import android.content.Context
 import android.util.Log
 import android.widget.TextView
 import android.widget.TextView.BufferType
+import com.jasonkhew96.fff.Constant.TAG
 import com.jasonkhew96.fff.XposedHelper.getHostClassLoader
 import com.jasonkhew96.fff.XposedHelper.hookBefore
 import io.github.libxposed.api.XposedInterface
@@ -57,7 +58,7 @@ class XposedInit(
 
                     hookBefore(textStringSimpleElementCtor, textViewCallback)
                 } catch (e: Throwable) {
-                    Log.d("FFF", "textStringSimpleElementClass not found")
+                    Log.d(TAG, "textStringSimpleElementClass not found")
                 }
 
                 try {
@@ -71,7 +72,7 @@ class XposedInit(
                     hookBefore(textStringSimpleNodeCtor, textViewCallback)
                     hookBefore(updateTextMethod, textViewCallback)
                 } catch (e: Throwable) {
-                    Log.d("FFF", "textStringSimpleNodeClass not found")
+                    Log.d(TAG, "textStringSimpleNodeClass not found")
                 }
 
                 try {
@@ -94,8 +95,7 @@ class XposedInit(
                                 annotatedStringClass.declaredFields.first { f -> f.name == "text" }
                             textField.isAccessible = true
                             textField.set(
-                                callback.args[0],
-                                beforeText.replace(Regex("\\w+"), replaceText)
+                                callback.args[0], beforeText.replace(Regex("\\w+"), replaceText)
                             )
                         }
                     }
@@ -103,7 +103,7 @@ class XposedInit(
                     hookBefore(textAnnotatedStringNodeCtor, annotatedStringCallback)
                     hookBefore(updateTextMethod, annotatedStringCallback)
                 } catch (e: Throwable) {
-                    Log.d("FFF", "textAnnotatedStringNodeClass not found")
+                    Log.d(TAG, "textAnnotatedStringNodeClass not found")
                 }
             }
         })

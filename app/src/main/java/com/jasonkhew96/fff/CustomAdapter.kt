@@ -3,6 +3,7 @@ package com.jasonkhew96.fff
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
+import com.jasonkhew96.fff.ui.AppLabelView
 import io.github.libxposed.service.XposedService
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

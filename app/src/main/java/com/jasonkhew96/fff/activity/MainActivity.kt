@@ -1,11 +1,14 @@
-package com.jasonkhew96.fff
+package com.jasonkhew96.fff.activity
 
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import com.jasonkhew96.fff.Constant.PREF_REPLACE_TEXT
+import com.jasonkhew96.fff.Constant
+import com.jasonkhew96.fff.R
+import com.jasonkhew96.fff.app
+import com.jasonkhew96.fff.ui.MainView
 
 class MainActivity : Activity() {
     private lateinit var mainView: MainView
@@ -18,7 +21,8 @@ class MainActivity : Activity() {
         mainView.buttonSave.let {
             it.setText(R.string.button_save)
             it.setOnClickListener {
-                app.prefs?.edit()?.putString(PREF_REPLACE_TEXT, mainView.editText.text.toString())
+                app.prefs?.edit()
+                    ?.putString(Constant.PREF_REPLACE_TEXT, mainView.editText.text.toString())
                     ?.apply()
             }
         }
@@ -33,7 +37,7 @@ class MainActivity : Activity() {
                     val intent = Intent(this, ScopeActivity::class.java)
                     startActivity(intent)
                 }
-                mainView.editText.setText(app.prefs?.getString(PREF_REPLACE_TEXT, "FFF"))
+                mainView.editText.setText(app.prefs?.getString(Constant.PREF_REPLACE_TEXT, "FFF"))
             }
         }, 500)
     }

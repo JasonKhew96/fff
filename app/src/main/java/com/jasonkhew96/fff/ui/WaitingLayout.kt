@@ -1,9 +1,10 @@
-package com.jasonkhew96.fff
+package com.jasonkhew96.fff.ui
 
 import android.content.Context
 import android.graphics.Color
 import android.util.AttributeSet
 import android.widget.TextView
+import com.jasonkhew96.fff.R
 
 class WaitingLayout(context: Context, attrs: AttributeSet? = null) :
     CustomViewGroup(context, attrs) {

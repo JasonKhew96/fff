@@ -1,8 +1,11 @@
-package com.jasonkhew96.fff
+package com.jasonkhew96.fff.activity
 
 import android.app.Activity
 import android.os.Bundle
 import android.view.ViewGroup
+import com.jasonkhew96.fff.CustomAdapter
+import com.jasonkhew96.fff.ui.ScopeView
+import com.jasonkhew96.fff.ui.WaitingLayout
 
 class ScopeActivity : Activity() {
 

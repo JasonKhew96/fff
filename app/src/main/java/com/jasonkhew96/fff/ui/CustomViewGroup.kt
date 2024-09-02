@@ -1,4 +1,4 @@
-package com.jasonkhew96.fff
+package com.jasonkhew96.fff.ui
 
 import android.content.Context
 import android.content.res.Resources
