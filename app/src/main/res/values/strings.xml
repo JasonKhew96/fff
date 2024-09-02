@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">THE PERFECT INSIDER</string>
+    <string name="button_scope">Scope</string>
+    <string name="edit_text_hint">FFF</string>
+    <string name="button_save">Save</string>
+    <string name="waiting">Waiting for scope acknowledgement…</string>
+</resources>
