@@ -30,7 +30,7 @@ class ScopeActivity : Activity() {
         }
 
         val scopeView = ScopeView(this)
-        scopeView.recyclerView.adapter = CustomAdapter(mListener)
+        scopeView.listView.adapter = CustomAdapter(mListener)
         setContentView(scopeView)
     }
 
