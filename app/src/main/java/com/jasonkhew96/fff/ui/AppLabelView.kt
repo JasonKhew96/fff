@@ -9,7 +9,6 @@ class AppLabelView(context: Context, attrs: AttributeSet? = null) :
     CustomViewGroup(context, attrs) {
 
     val labelView = TextView(context).apply {
-        if (isInEditMode) text = "LabelLabelLabelLabelLabelLabelLabelLabelLabel"
         layoutParams =
             MarginLayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT).apply {
                 topMargin = 8.dp
@@ -20,7 +19,6 @@ class AppLabelView(context: Context, attrs: AttributeSet? = null) :
     }
 
     val packageNameView = TextView(context).apply {
-        if (isInEditMode) text = "com.example.appcom.example.appcom.example.app"
         layoutParams =
             MarginLayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT).apply {
                 leftMargin = 16.dp
