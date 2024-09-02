@@ -45,7 +45,7 @@ dependencies {
     compileOnly(project(":libxposed-compat"))
     compileOnly(libs.libxposed.api)
     implementation(libs.libxposed.service)
-    implementation(libs.kotlinx.coroutines.core)
+    implementation(libs.kotlinx.coroutines.android)
 }
 
 val deleteAppMetadata = task("deleteAppMetadata") {
