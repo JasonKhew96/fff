@@ -37,7 +37,8 @@ class CustomAdapter(private val mListener: OnRequestListener) : BaseAdapter() {
             if (button.isPressed.not()) return@setOnCheckedChangeListener
             if (isChecked) {
                 mListener.onRequest()
-                app.xposedService?.requestScope(app.appList[position].packageName,
+                app.xposedService?.requestScope(
+                    app.appList[position].packageName,
                     object : XposedService.OnScopeEventListener {
                         override fun onScopeRequestApproved(packageName: String?) {
                             CoroutineScope(Dispatchers.Main).launch {
@@ -47,7 +48,6 @@ class CustomAdapter(private val mListener: OnRequestListener) : BaseAdapter() {
                         }
 
                         override fun onScopeRequestDenied(packageName: String?) {
-                            super.onScopeRequestDenied(packageName)
                             CoroutineScope(Dispatchers.Main).launch {
                                 button.isChecked = false
                                 app.scopeList.remove(packageName!!)
@@ -56,7 +56,6 @@ class CustomAdapter(private val mListener: OnRequestListener) : BaseAdapter() {
                         }
 
                         override fun onScopeRequestTimeout(packageName: String?) {
-                            super.onScopeRequestTimeout(packageName)
                             CoroutineScope(Dispatchers.Main).launch {
                                 button.isChecked = false
                                 app.scopeList.remove(packageName!!)
@@ -67,7 +66,6 @@ class CustomAdapter(private val mListener: OnRequestListener) : BaseAdapter() {
                         override fun onScopeRequestFailed(
                             packageName: String?, message: String?
                         ) {
-                            super.onScopeRequestFailed(packageName, message)
                             CoroutineScope(Dispatchers.Main).launch {
                                 button.isChecked = false
                                 app.scopeList.remove(packageName!!)

@@ -19,7 +19,6 @@ class XposedInit(
 
     @SuppressLint("DiscouragedPrivateApi")
     override fun onPackageLoaded(param: XposedModuleInterface.PackageLoadedParam) {
-        super.onPackageLoaded(param)
         if (!param.isFirstPackage) return
         XposedHelper.init(this, param.classLoader)
 
