@@ -1,13 +1,10 @@
 package com.jasonkhew96.fff
 
+import android.app.Activity
 import android.os.Bundle
 import android.view.ViewGroup
-import androidx.activity.addCallback
-import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.LinearLayoutManager
 
-class ScopeActivity : AppCompatActivity() {
+class ScopeActivity : Activity() {
 
     var isBlocked = false
     lateinit var waitingLayout: WaitingLayout
@@ -16,13 +13,6 @@ class ScopeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         waitingLayout = WaitingLayout(this)
-
-        onBackPressedDispatcher.addCallback(this) {
-            if (isBlocked) {
-                return@addCallback
-            }
-            super.onBackPressed()
-        }
 
         val mListener = object : CustomAdapter.OnRequestListener {
             override fun onRequest() {
@@ -38,13 +28,13 @@ class ScopeActivity : AppCompatActivity() {
 
         val scopeView = ScopeView(this)
         scopeView.recyclerView.adapter = CustomAdapter(mListener)
-        scopeView.recyclerView.layoutManager = LinearLayoutManager(this)
-        scopeView.recyclerView.addItemDecoration(
-            DividerItemDecoration(
-                this,
-                DividerItemDecoration.VERTICAL
-            )
-        )
         setContentView(scopeView)
+    }
+
+    override fun onBackPressed() {
+        if (isBlocked) {
+            return
+        }
+        finish()
     }
 }

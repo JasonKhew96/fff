@@ -1,13 +1,13 @@
 package com.jasonkhew96.fff
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import androidx.appcompat.app.AppCompatActivity
 import com.jasonkhew96.fff.Constant.PREF_REPLACE_TEXT
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : Activity() {
     private lateinit var mainView: MainView
 
     override fun onCreate(savedInstanceState: Bundle?) {

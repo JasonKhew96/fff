@@ -1,18 +1,14 @@
 [versions]
 agp = "8.6.0"
 kotlin = "1.9.0"
-coreKtx = "1.13.1"
-appcompat = "1.7.0"
+kotlinxCoroutinesCore = "1.8.1"
 libxposed-api = "100"
 libxposed-service = "100-1.0.0"
-recyclerview = "1.3.2"
 
 [libraries]
-androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
-androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinxCoroutinesCore" }
 libxposed-api = { group = "io.github.libxposed", name = "api", version.ref = "libxposed-api" }
 libxposed-service = { group = "io.github.libxposed", name = "service", version.ref = "libxposed-service" }
-androidx-recyclerview = { group = "androidx.recyclerview", name = "recyclerview", version.ref = "recyclerview" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

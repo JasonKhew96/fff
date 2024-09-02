@@ -13,7 +13,6 @@ class WaitingLayout(context: Context, attrs: AttributeSet? = null) :
 
     private val waitText = TextView(context).apply {
         setText(R.string.waiting)
-        setTextAppearance(androidx.appcompat.R.style.TextAppearance_AppCompat_Large)
         setTextColor(Color.WHITE)
         layoutParams = MarginLayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT)
         this@WaitingLayout.addView(this)

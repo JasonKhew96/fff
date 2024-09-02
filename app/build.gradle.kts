@@ -41,14 +41,24 @@ android {
 }
 
 dependencies {
-
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.appcompat)
-    implementation(libs.androidx.recyclerview)
-
     // libxposed
     compileOnly(project(":libxposed-compat"))
     compileOnly(libs.libxposed.api)
     implementation(libs.libxposed.service)
+    implementation(libs.kotlinx.coroutines.core)
+}
 
+val deleteAppMetadata = task("deleteAppMetadata") {
+    doLast {
+        file("build/intermediates/app_metadata/release/writeReleaseAppMetadata/app-metadata.properties").writeText(
+            ""
+        )
+    }
+}
+
+afterEvaluate {
+    tasks.named("mergeReleaseArtProfile").get().enabled = false
+    tasks.named("compileReleaseArtProfile").get().enabled = false
+    tasks.named("extractReleaseVersionControlInfo").get().enabled = false
+    tasks.named("writeReleaseAppMetadata").get().finalizedBy(deleteAppMetadata)
 }

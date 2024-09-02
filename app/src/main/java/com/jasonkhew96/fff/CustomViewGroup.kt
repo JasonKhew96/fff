@@ -8,12 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.ViewGroup.LayoutParams.MATCH_PARENT
 import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
-import androidx.annotation.StyleRes
-import androidx.appcompat.view.ContextThemeWrapper
-import androidx.core.view.marginBottom
-import androidx.core.view.marginEnd
-import androidx.core.view.marginStart
-import androidx.core.view.marginTop
 
 // thanks Drakeet
 val Int.dp
@@ -26,7 +20,21 @@ val Float.sp
         TypedValue.COMPLEX_UNIT_SP, this, Resources.getSystem().displayMetrics
     )
 
-fun Context.toTheme(@StyleRes style: Int) = ContextThemeWrapper(this, style)
+// https://cs.android.com/androidx/platform/frameworks/support/+/androidx-main:core/core-ktx/src/main/java/androidx/core/view/View.kt
+inline val View.marginStart: Int
+    get() {
+        val lp = layoutParams
+        return if (lp is ViewGroup.MarginLayoutParams) lp.marginStart else 0
+    }
+inline val View.marginEnd: Int
+    get() {
+        val lp = layoutParams
+        return if (lp is ViewGroup.MarginLayoutParams) lp.marginEnd else 0
+    }
+inline val View.marginTop: Int
+    get() = (layoutParams as? ViewGroup.MarginLayoutParams)?.topMargin ?: 0
+inline val View.marginBottom: Int
+    get() = (layoutParams as? ViewGroup.MarginLayoutParams)?.bottomMargin ?: 0
 
 abstract class CustomViewGroup(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
