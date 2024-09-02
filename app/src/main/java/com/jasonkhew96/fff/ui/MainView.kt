@@ -13,6 +13,7 @@ class MainView(context: Context, attrs: AttributeSet? = null) : CustomViewGroup(
     }
 
     val editText = EditText(context).apply {
+        setSingleLine()
         layoutParams = MarginLayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
         this@MainView.addView(this)
     }
