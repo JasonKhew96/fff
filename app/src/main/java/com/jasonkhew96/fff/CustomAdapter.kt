@@ -32,17 +32,18 @@ class CustomAdapter(private val mListener: OnRequestListener) : BaseAdapter() {
         val view = AppLabelView(parent!!.context)
         view.labelView.text = app.appList[position].label
         view.packageNameView.text = app.appList[position].packageName
+        view.switch.isChecked = app.scopeList.contains(app.appList[position].packageName)
         view.switch.setOnCheckedChangeListener { button, isChecked ->
             if (button.isPressed.not()) return@setOnCheckedChangeListener
             if (isChecked) {
                 mListener.onRequest()
-                app.xposedService?.requestScope(
-                    app.appList[position].packageName,
+                app.xposedService?.requestScope(app.appList[position].packageName,
                     object : XposedService.OnScopeEventListener {
                         override fun onScopeRequestApproved(packageName: String?) {
-                            super.onScopeRequestApproved(packageName)
-                            app.scopeList.add(packageName!!)
-                            mListener.onFinish()
+                            CoroutineScope(Dispatchers.Main).launch {
+                                app.scopeList.add(packageName!!)
+                                mListener.onFinish()
+                            }
                         }
 
                         override fun onScopeRequestDenied(packageName: String?) {
