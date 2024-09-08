@@ -20,6 +20,7 @@ android {
             signingConfig = signingConfigs["debug"]
             isShrinkResources = true
             isMinifyEnabled = true
+            vcsInfo.include = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
             )
@@ -59,6 +60,5 @@ val deleteAppMetadata = task("deleteAppMetadata") {
 afterEvaluate {
     tasks.named("mergeReleaseArtProfile").get().enabled = false
     tasks.named("compileReleaseArtProfile").get().enabled = false
-    tasks.named("extractReleaseVersionControlInfo").get().enabled = false
     tasks.named("writeReleaseAppMetadata").get().finalizedBy(deleteAppMetadata)
 }
